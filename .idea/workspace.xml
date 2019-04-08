@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f8d4f8bc-d7e2-4e82-ba0f-e5a0bd6b0e50" name="Default" comment="" />
+    <list default="true" id="f8d4f8bc-d7e2-4e82-ba0f-e5a0bd6b0e50" name="Default" comment="- Read serial is working&#10;- Node mapping is working&#10;* OMITTED: Draw circles and lines is working&#10;&#10;- Class Serial() has been made&#10;- Class NodeMapping() has been made&#10;- Class GetMeshFromSerialThread() instantiates Serial and function recursiveNodeMapping&#10;- Added serial setting label&#10;- Combine PyQt with Networkx in a window. Works well.&#10;&#10;- Added class BroadcastDialog and SingleDialog popups when a node is clicked on the GUI.&#10;- Added Set and Query functions on the popup dialogs, and tested together with ESP8266. They work! &#10;&#10;TODO:&#10;- interpret the set-reply and query-reply&#10;- query-reply should be added to the node's properties&#10;&#10;NOTES:&#10;- ESP8266 occasionally gives wrong mesh json string. The nodes mesh is much more complex than the actual. Observed, it happens when nodes are connected and disconnected. It is the problem of ESP8266 painlessMesh&#10;&#10;&#10;++ This commit is after cleaning up codes.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/graph.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +30,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/top.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
+            <state relative-caret-position="1632">
               <caret line="96" selection-start-line="96" selection-end-line="96" />
               <folding>
                 <element signature="e#69#104#0" expanded="true" />
@@ -62,8 +65,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/graph.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="51" column="31" lean-forward="true" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="31" />
+            <state relative-caret-position="381">
+              <caret line="48" column="118" selection-start-line="48" selection-start-column="118" selection-end-line="48" selection-end-column="118" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -170,7 +173,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="ChangesBrowser.SHOW_FLATTEN" value="true" />
+    <property name="ChangesTree.GroupingKeys" value="" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -421,16 +424,16 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4385066" weight="0.329653" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.5169029" weight="0.35721704" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.51635766" weight="0.35721704" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.63249725" weight="0.27622014" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49707174" weight="0.329653" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.795754" weight="0.329653" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49945474" visible="true" weight="0.32917964" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.7557252" weight="0.32917964" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.40409955" side_tool="true" weight="0.34700316" />
       <window_info anchor="bottom" id="Messages" order="10" />
-      <window_info anchor="bottom" x="3" y="262" width="1360" height="203" id="Python Console" order="11" sideWeight="0.50054526" side_tool="true" visible="true" weight="0.32917964" />
+      <window_info anchor="bottom" x="3" y="262" width="1360" height="203" id="Python Console" order="11" sideWeight="0.4836423" side_tool="true" visible="true" weight="0.35721704" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -588,16 +591,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/top.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="96" selection-start-line="96" selection-end-line="96" />
-          <folding>
-            <element signature="e#69#104#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main_window.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -617,10 +610,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/top.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1632">
+          <caret line="96" selection-start-line="96" selection-end-line="96" />
+          <folding>
+            <element signature="e#69#104#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/graph.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="51" column="31" lean-forward="true" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="31" />
+        <state relative-caret-position="381">
+          <caret line="48" column="118" selection-start-line="48" selection-start-column="118" selection-end-line="48" selection-end-column="118" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>

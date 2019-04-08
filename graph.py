@@ -7,6 +7,7 @@ from node_mapping import recursive_node_mapping
 class Graph:
     def __init__(self):
         self.nodesData={}
+        self.labels={}
         self.G = nx.Graph()
         self.G.add_node(1)
         self.figure = nx.draw(self.G)
@@ -43,17 +44,23 @@ class Graph:
     
     def updateNodeData(self, nodeDataString):
         nodeData = json.loads(nodeDataString)['SendData']
-        print(nodeData['MeshId'])
-        oldNodeData = self.nodesData[nodeData['MeshId']]
+        oldNodeData = self.nodesData[nodeData['MeshId']] if nodeData['MeshId'] in self.nodesData else ''
 
         if(not str(oldNodeData)==str(nodeData)):
+            nodeData['label']='Prev: ' + str(nodeData['isPrevConnected'] )+ '\nNext: ' + str(nodeData['isNextConnected'] )
             self.nodesData[nodeData['MeshId']]=nodeData
+            self.labels[nodeData['MeshId']]=nodeData['label']
             color_map = []
             for node in self.G:
-                if self.nodesData[node]:
-                    color_map.append('green' if self.nodesData[node].isPrevConnected and self.nodesData[node].isNextConnected else 'red')
+                if(not node in self.labels):
+                    self.labels[node] = node
+                if node in self.nodesData:
+                    color_map.append('green' if self.nodesData[node]['isPrevConnected'] and self.nodesData[node]['isNextConnected'] else 'red')
                 else:
                      color_map.append('gray')
-            self.figure = nx.draw(self.G,node_color = color_map,with_labels = True)
+            pos = nx.spring_layout(self.G)
+            self.figure.clear()
+            self.figure = nx.draw(self.G,pos=pos,node_color = color_map,with_labels = False)
+            nx.draw_networkx_labels(self.G,pos,self.labels,font_size=12)
             self.canvas.draw()
 
