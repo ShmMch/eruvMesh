@@ -47,7 +47,7 @@ class Graph:
         oldNodeData = self.nodesData[nodeData['MeshId']] if nodeData['MeshId'] in self.nodesData else ''
 
         if(not str(oldNodeData)==str(nodeData)):
-            nodeData['label']='Prev: ' + str(nodeData['isPrevConnected'] )+ '\nNext: ' + str(nodeData['isNextConnected'] )
+            nodeData['label']='Id: '+str(nodeData['MeshId'])+'\nPrev: ' + str(nodeData['isPrevConnected'] )+ '\nNext: ' + str(nodeData['isNextConnected'] )
             self.nodesData[nodeData['MeshId']]=nodeData
             self.labels[nodeData['MeshId']]=nodeData['label']
             color_map = []
@@ -61,6 +61,6 @@ class Graph:
             pos = nx.spring_layout(self.G)
             self.figure.clear()
             self.figure = nx.draw(self.G,pos=pos,node_color = color_map,with_labels = False)
-            nx.draw_networkx_labels(self.G,pos,self.labels,font_size=12)
+            nx.draw_networkx_labels(self.G,pos,self.labels,font_size=10)
             self.canvas.draw()
 
